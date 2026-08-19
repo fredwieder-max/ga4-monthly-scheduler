@@ -6,7 +6,7 @@ on:
           # Cron format: minute hour day month day-of-week
               # 6 8 1 * * = 8:00 UTC (which is 10:00 CEST or 9:00 CET depending on DST)
                   - cron: '0 6 1 * *'
-                    workflow_dispatch:
+  workflow_dispatch:
 
                     jobs:
                       trigger-make-scenario:
