@@ -6,7 +6,23 @@ on:
         workflow_dispatch:
         
         jobs:
+name: Monthly GA4 Report
+
+on:
+  schedule:
+      - cron: '0 6 1 * *'
+        workflow_dispatch:
+        
+        jobs:
           trigger-make-scenario:
+              runs-on: ubuntu-latest
+                  steps:
+                        - name: Trigger Make.com webhook
+                                run: |
+                                          curl -X POST \
+                                                      -H "Content-Type: application/json" \
+                                                                  -d '{"trigger":"monthly-ga4-report"}' \
+                                                                              https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2strigger-make-scenario:
               runs-on: ubuntu-latest
                   steps:
                         - name: Trigger Make.com webhook
