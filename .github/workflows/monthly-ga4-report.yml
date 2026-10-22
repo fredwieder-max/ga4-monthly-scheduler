@@ -2,52 +2,18 @@ name: Monthly GA4 Report
 
 on:
   schedule:
-      - cron: '0 6 1 * *'
-        workflow_dispatch:
-        
-        jobs:
-name: Monthly GA4 Report
-
-on:
-  schedule:
-     - cron: '0 6 1 * *'
-        workflow_dispatch:
-        
-        jobs:
-          trigger-make-scenario:
-              runs-on: ubuntu-latest
-                  steps:
-                        - name: Trigger Make.com webhook
-                                run: |
-                                          curl -X POST \
-                                                      -H "Content-Type: application/json" \
-                                                                  -d '{"trigger":"monthly-ga4-report"}' \
-                                                                              https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2strigger-make-scenario:
-              runs-on: ubuntu-latest
-                  steps:
-                        - name: Trigger Make.com webhook
-                                run: |
-                                          curl -X POST \
-                                                      -H "Content-Type: application/json" \
-                                                                  -d '{"trigger":"monthly-ga4-report"}' \
-                                                                              https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2sname: Monthly GA4 Report
-
-on:
-  schedule:
-      # Runs at 8:00 AM UTC+2 (Paris time) on the 1st of every month
-          # Cron format: minute hour day month day-of-week
-              # 6 8 1 * * = 8:00 UTC (which is 10:00 CEST or 9:00 CET depending on DST)
-                  - cron: '0 6 1 * *'
+    # Le 1er de chaque mois à 6h00 UTC (8h00 en été, 7h00 en hiver, heure de Paris)
+    # Format cron : minute heure jour mois jour-de-semaine
+    - cron: '0 6 1 * *'
   workflow_dispatch:
 
-                    jobs:
-                      trigger-make-scenario:
-                          runs-on: ubuntu-latest
-                              steps:
-                                    - name: Trigger Make.com webhook
-                                            run: |
-                                                      curl -X POST \
-                                                                  -H "Content-Type: application/json" \
-                                                                              -d '{{"trigger":"monthly-ga4-report"}' \
-                                                                                  https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2s
-                                                                                      
+jobs:
+  trigger-make-scenario:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Make.com webhook
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"trigger":"monthly-ga4-report"}' \
+            https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2s
