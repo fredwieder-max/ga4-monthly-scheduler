@@ -12,8 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Make.com webhook
+        env:
+          # URL du webhook rangée dans Settings > Secrets and variables > Actions
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
         run: |
-          curl -X POST \
+          if [ -z "$MAKE_WEBHOOK_URL" ]; then
+            echo "Le secret MAKE_WEBHOOK_URL est absent : ajoutez-le dans Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST \
             -H "Content-Type: application/json" \
             -d '{"trigger":"monthly-ga4-report"}' \
-            https://hook.eu1.make.com/1il7c8g7w38ube8nsh7fbtige76fmk2s
+            "$MAKE_WEBHOOK_URL"
