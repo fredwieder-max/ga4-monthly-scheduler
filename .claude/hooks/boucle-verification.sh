@@ -7,7 +7,7 @@ cd "$(dirname "$0")/../.." || exit 0
 SESSION=$(jq -r '.session_id // "default"' 2>/dev/null)
 COMPTEUR="${TMPDIR:-/tmp}/claude-boucle-${SESSION}"
 
-SORTIE=$(./scripts/check.sh 2>&1)
+SORTIE=$(bash scripts/check.sh 2>&1)
 if [ $? -eq 0 ]; then
   rm -f "$COMPTEUR"
   exit 0
@@ -24,7 +24,7 @@ if [ "$TOURS" -gt "$MAX_TOURS" ]; then
 fi
 
 {
-  echo "Vérification en échec (tour $TOURS sur $MAX_TOURS). Corrige sans modifier scripts/check.sh pour le faire passer, puis relance ./scripts/check.sh."
+  echo "Vérification en échec (tour $TOURS sur $MAX_TOURS). Corrige sans modifier scripts/check.sh pour le faire passer, puis relance bash scripts/check.sh."
   echo "$SORTIE"
 } >&2
 exit 2

@@ -6,7 +6,7 @@ description: Vérifie un travail avant de le déclarer terminé. À utiliser à 
 Avant de dire qu'une tâche est terminée :
 
 1. Relis la demande de départ et la définition de « terminé » du CLAUDE.md.
-2. Lance `./scripts/check.sh` et lis le résultat en entier.
+2. Lance `bash scripts/check.sh` et lis le résultat en entier.
 3. Contrôle un cas normal et un cas limite (fichier vide, indentation décalée, clé manquante).
 4. Corrige ce qui ne va pas, puis recommence au point 2 (5 tours maximum).
 

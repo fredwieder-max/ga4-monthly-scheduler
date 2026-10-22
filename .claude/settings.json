@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./scripts/check.sh)",
+      "Bash(bash scripts/check.sh)",
       "Bash(python3 -I *)",
       "Bash(git status*)",
       "Bash(git diff*)",
@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/boucle-verification.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/boucle-verification.sh"
           }
         ]
       }
